@@ -20,6 +20,9 @@ function startGame(){
     //reset varables at round level
     correctGuesses = [];
     incorrectGuesses = [];
+    if(wordsUsed.length > 9){
+        displayed.length = 0;
+    }
     // call function to select a band
     var bandName =  selectWord();
     document.querySelector("#wins").innerHTML = "Current Score is: "+ score;
