@@ -34,7 +34,7 @@ function selectWord(){
     var bandName = bandNames[wordSelector];
     var q = wordsUsed.indexOf(bandName);
     //establish if band has been used before and if so pick another
-    if(q=-1){
+    if(q===-1){
         wordsUsed.push(bandName);
         gameSetup(bandName);
     } else {
