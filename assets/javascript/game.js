@@ -21,7 +21,7 @@ function startGame(){
     correctGuesses = [];
     incorrectGuesses = [];
     if(wordsUsed.length > 9){
-        displayed.length = 0;
+        wordsUsed.length = 0;
     }
     // call function to select a band
     var bandName =  selectWord();
