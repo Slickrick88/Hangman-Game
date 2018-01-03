@@ -36,6 +36,15 @@ h2{
 
 }
 
+.bandImage{
+    margin-top: 50px;
+    display: block;
+    position: relative;
+    height: 75%;
+    width: 75%;
+    margin: auto;
+}
+
 
 
 

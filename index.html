@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Basic Variable Assignment</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="\assets\javascript\script.js"></script>
+    <script src="assets/javascript/script.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -21,7 +21,9 @@
             <div class="col-md-5" id="column2">
                 <div class="row" id="row1a">  
                     <p id="correctBand"></p>  
-                    <a id="image">
+                 </div>
+                 <div class="row" id="row2a">     
+                    <image class="bandImage" alt = "photo of band" id = "bandPhoto" src="assets\images\10.png">
                 </div>
             </div>
             <div class="col-md-5" id="column3">
@@ -61,6 +63,7 @@ var displayed = [];
 var incorrectGuesses = [];
 var guessesRemaining = 0;
 var bandName;
+var imagePath = "assets/images/";
 
 // start the game
 document.onkeyup = function(){
@@ -137,7 +140,7 @@ function roundStart(bandName){
                     score ++;
                     document.querySelector("#wins").innerHTML = "Current Score is: "+ score;
                     document.querySelector("#correctBand").innerHTML = bandName;
-                    // document.getElementById("myImg").innerHtml =;
+                    document.querySelector('#bandPhoto').src= imagePath + bandNames.indexOf(bandName) + ".jpg";
                     startGame();
                 }
             //letter selected is not in the word
