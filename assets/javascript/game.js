@@ -62,43 +62,49 @@ function gameSetup(bandName){
 //starts each specific round of the game after the word has been selected
 function roundStart(bandName){
     guessesRemaining = bandName.length;
+    incorrectGuesses.length = 0;
     document.querySelector("#incorrectGuesses").innerHTML = incorrectGuesses.join(', ');
     document.querySelector("#guessesRemaining").innerHTML = "You Have  " + guessesRemaining + " Guess Remaining";
     document.onkeyup = function(event) { 
         var userInput = String.fromCharCode(event.keyCode).toLowerCase();
-        //check to see if selected letter in in string
-        var n=bandName.lastIndexOf(userInput);
-        // see if the user is out of guesses
-        if (guessesRemaining < 1){
-            losses++;
-            document.querySelector("#lostGames").innerHTML = "Number of Losses is: " + losses;
-            startGame();
-        //if guesses remain continue game
+        //check to see if user has alredy selected this letter
+        if(incorrectGuesses.indexOf(userInput) !== -1){
+            alert("You have already selected this letter, try again")
         } else {
-            //check to see if users letter selection is in the selected band name
-            if(n >-1){
-                //letter seleted is in the word
-                for(i=0; i < n+1; i++) {
-                //give position in the array of matching chararter
-                    if(userInput === bandName[i]){
-                        displayed.splice(i,1,userInput);
-                        document.querySelector("#wordDisplayed").innerHTML = displayed.join(' '); 
-                    }
-                }
-                //call function to see if the user has won
-                if (checkWin(bandName,displayed)===1){
-                    score ++;
-                    document.querySelector("#wins").innerHTML = "Current Score is: "+ score;
-                    document.querySelector("#correctBand").innerHTML = bandName;
-                    document.querySelector('#bandPhoto').src= imagePath + bandNames.indexOf(bandName) + ".jpg";
-                    startGame();
-                }
-            //letter selected is not in the word
+        //check to see if selected letter in in string
+            var n=bandName.lastIndexOf(userInput);
+        // see if the user is out of guesses
+            if (guessesRemaining < 1){
+                losses++;
+                document.querySelector("#lostGames").innerHTML = "Number of Losses is: " + losses;
+                startGame();
+            //if guesses remain continue game
             } else {
-                incorrectGuesses.push(userInput);
-                -- guessesRemaining;
-                document.querySelector("#guessesRemaining").innerHTML = "You Have  " + guessesRemaining + " Guess Remaining";
-                document.querySelector("#incorrectGuesses").innerHTML = incorrectGuesses.join(', ');
+                //check to see if users letter selection is in the selected band name
+                if(n >-1){
+                    //letter seleted is in the word
+                    for(i=0; i < n+1; i++) {
+                    //give position in the array of matching chararter
+                        if(userInput === bandName[i]){
+                            displayed.splice(i,1,userInput);
+                            document.querySelector("#wordDisplayed").innerHTML = displayed.join(' '); 
+                        }
+                    }
+                    //call function to see if the user has won
+                    if (checkWin(bandName,displayed)===1){
+                        score ++;
+                        document.querySelector("#wins").innerHTML = "Current Score is: "+ score;
+                        document.querySelector("#correctBand").innerHTML = bandName;
+                        document.querySelector('#bandPhoto').src= imagePath + bandNames.indexOf(bandName) + ".jpg";
+                        startGame();
+                    }
+                //letter selected is not in the word
+                } else {
+                    incorrectGuesses.push(userInput);
+                    -- guessesRemaining;
+                    document.querySelector("#guessesRemaining").innerHTML = "You Have  " + guessesRemaining + " Guess Remaining";
+                    document.querySelector("#incorrectGuesses").innerHTML = incorrectGuesses.join(', ');
+                }
             }
         }
     }
