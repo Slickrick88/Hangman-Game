@@ -64,7 +64,7 @@ function roundStart(bandName){
     guessesRemaining = bandName.length;
     incorrectGuesses.length = 0;
     document.querySelector("#incorrectGuesses").innerHTML = incorrectGuesses.join(', ');
-    document.querySelector("#guessesRemaining").innerHTML = "You Have  " + guessesRemaining + " Guess Remaining";
+    document.querySelector("#guessesRemaining").innerHTML = "You Have  " + guessesRemaining + " Guesses Remaining";
     document.onkeyup = function(event) { 
         var userInput = String.fromCharCode(event.keyCode).toLowerCase();
         //check to see if user has alredy selected this letter
